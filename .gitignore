@@ -1,0 +1,10 @@
+# Ignore compiled Python files
+*.pyc
+
+# Ignore log files
+logs/
+
+# Ignore temporary files
+temp/*
+
+DictEditor.spec
