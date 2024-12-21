@@ -1,0 +1,85 @@
+{
+    "wood": [
+        "wood",
+        "lumber",
+        "timber",
+        "plywood",
+        "board",
+        "OSB",
+        "bark"
+    ],
+    "metal": [
+        "metal",
+        "steel",
+        "iron",
+        "aluminum",
+        "copper",
+        "brass",
+        "aluminium",
+        "gold"
+    ],
+    "plastic": [
+        "plastic",
+        "polymer",
+        "PVC",
+        "acrylic",
+        "polystyrene",
+        "rubber"
+    ],
+    "glass": [
+        "glass",
+        "silica",
+        "crystal",
+        "pane",
+        "window"
+    ],
+    "brick": [
+        "brick",
+        "masonry",
+        "block",
+        "stone",
+        "clay",
+        "rock",
+        "tile"
+    ],
+    "concrete": [
+        "concrete",
+        "cement",
+        "mortar",
+        "aggregate",
+        "plaster",
+        "asphalt",
+        "wall",
+        "stucco",
+        "road",
+        "plaster"
+    ],
+    "drywall": [
+        "drywall",
+        "plasterboard",
+        "sheetrock"
+    ],
+    "fabric": [
+        "fabric",
+        "cloth",
+        "textile",
+        "linen",
+        "cotton",
+        "wool",
+        "flag"
+    ],
+    "paper": [
+        "paper",
+        "parchment",
+        "cardboard"
+    ],
+    "sand": [
+        "sand",
+        "ground",
+        "soil",
+        "grass",
+        "gravel",
+        "mud",
+        "desert"
+    ]
+}
