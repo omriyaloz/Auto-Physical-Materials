@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import (
     QHeaderView,
     QAbstractItemView
 )
-
+#test
 
 class DictionaryEditor(QWidget):
     def __init__(self):
