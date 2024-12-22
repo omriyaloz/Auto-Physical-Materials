@@ -1,78 +1,100 @@
-##Description
 
-Automatically assign physical materials in your UE4 projects, based on a dictionary of materials (keys) and their corresponding synonyms.
-Helps save valuable time and mitigate the repetitive task of assigning physical materials to your materials.
+# Auto Physical Materials Assigner for Unreal Engine
 
+This tool automates the process of assigning physical materials to your Unreal Engine materials based on a dictionary of physical materials and their synonyms. It saves time and reduces the repetitive task of manually assigning physical materials to meshes in your level.
 
-What are physical materials?
+### What Are Physical Materials?
 
-Physical materials are used to define the response of a physical object when interacting dynamically with the world.
-Commonly used for visual responses like bullethole decals, ballistics modeling when shot at, interaction sounds and more.
-To learn more about physical materials in Unreal: https://dev.epicgames.com/documentation/en-us/unreal-engine/tutorials-about-physical-materials-in-unreal-engine
- 
+Physical materials in Unreal Engine define how an object interacts with the world physically. They affect various behaviors, such as:
+- Visual effects like bullet hole decals
+- Ballistics modeling (e.g., effects when an object is shot)
+- Interaction sounds (e.g., footsteps, impacts)
 
-##Usage
+To learn more about physical materials in Unreal Engine, visit the official [Unreal Engine Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/tutorials-about-physical-materials-in-unreal-engine).
 
-The tools is simple- It assigns physical-materials to materials on existing meshes in your level,
-so as long as you give descriptive names to your materials, it will know which physical material to assign to each of your materials.
-It pulls key-value pairs from a python dictionary, which conveniently exists in a .json file.
-![image](https://github.com/user-attachments/assets/0c2841c9-2831-44c1-83e5-ea1e8efd676c)
+---
 
-The only thing you might need to change is the path to your physical materials directory and the path to your json file. 
-By default, the json file should exist where AssignPhysMats.py resides.
+## Features
 
-DictEditor.exe is a tool I created with PyQt to easily create and edit dictionaries:
+- Automatically assigns physical materials to materials on existing meshes within your level.
+- Uses a dictionary (key-value pairs) stored in a `.json` file to map material names to their corresponding physical materials.
+- Simple and flexible—requires only descriptive material names to function properly.
+- A PyQt-based tool, **DictEditor.exe**, makes it easy to create and edit the dictionary of physical materials.
+- Includes an **Editor Utility Blueprint (EUB)** with buttons to automatically assign and remove physical materials.
+
+---
+
+## Usage
+
+1. **Configure the Tool**:  
+   To get started, you’ll need to specify the path to your physical materials directory and the `.json` file containing the material mappings. By default, the `.json` file should reside in the same folder as the script (`AssignPhysMats.py`).
+
+2. **Dictionary Setup**:  
+   Use the **DictEditor.exe** tool to create and manage the dictionary of physical materials and their associated material names. The dictionary file should follow this format:
+   - **Key**: Physical material name (e.g., `Metal`, `Wood`, `Concrete`).
+   - **Value**: Material names that correspond to the physical material.
 ![image](https://github.com/user-attachments/assets/2f70fee5-eb86-45cb-a1a2-08d2b5245780)
+   Once you're done, save the `.json` file.
+   
 
-The Key column is for your physical material name, and the Value column is for the potential material names associated with that physical material.
-Once you've created your dictionary, save the .json file and you're done. You or your team can always go back and modify the json file according to your project needs.
+4. **Assigning Physical Materials**:  
+   After setting up the dictionary, open your level in Unreal Engine, select the materials in the content browser, and click on the "Auto Physical Materials" button in the EUB. The script will automatically assign the appropriate physical material to each selected material based on the dictionary.
 
-I created an Editor Utility Blueprint (EUB) with buttons for assigning physical materials and removing physical materials:
+5. **Removing Physical Materials**:  
+   To remove the assigned physical materials, select the materials in the content browser and click on the "Remove Physical Materials" button.
 
-![image](https://github.com/user-attachments/assets/eb80ffb9-2b5f-4e1f-a7fe-f5a83cf7fbf2)
+---
 
-Let's test this out on a demo scene I put together using a free materials pack:
-![image](https://github.com/user-attachments/assets/5029bdb8-c4fd-4dd4-86e4-53ff6bc91322)
+## Demo
 
+Here’s an example of the tool in action:
 
-Note none of these materials currently have a physical material assigned to them.
+1. **Before**:  
+   The materials in the level have no physical materials assigned:
+   ![image](https://github.com/user-attachments/assets/5029bdb8-c4fd-4dd4-86e4-53ff6bc91322)
 
-My physical materials reside in /content/PhysicalMaterials as such:
-![image](https://github.com/user-attachments/assets/c4cb19a0-704a-46a5-b17e-f03785056580)
+2. **Physical Materials Directory**:  
+   The physical materials reside in the `/content/PhysicalMaterials` directory:
+   ![image](https://github.com/user-attachments/assets/c4cb19a0-704a-46a5-b17e-f03785056580)
 
-I simply click on Auto Physical Materials button, which calls the function find_and_set_phys_mats()
+3. **Auto Assignment**:  
+   After clicking the "Auto Physical Materials" button, the script processes the materials and assigns the correct physical materials. The output log will display the results:
+   
+   ![image](https://github.com/user-attachments/assets/628ed3b3-6b45-4678-b065-68e14522e861)
 
-![image](https://github.com/user-attachments/assets/7c962496-5a7d-44ea-a2cb-a955bec3754a)
+   One rock material was *wrongly* assigned the `Metal` physical material:
+   ![image](https://github.com/user-attachments/assets/e91d53e4-76f3-4572-9748-7bfa0223cd52)
 
-Output Log:
+   The word Iron exists in the material name, so the script couldn't determine which physical material to assign.
 
-![image](https://github.com/user-attachments/assets/628ed3b3-6b45-4678-b065-68e14522e861)
+---
 
-![image](https://github.com/user-attachments/assets/27378a08-2317-4489-92f4-41789f0462bb)
+## Limitations
 
+- **Naming Convention**: The script relies on the material names being descriptive and follows a specific convention. If your material name contains ambiguous keywords (e.g., "Iron" for both metal and stone-like materials), the script may not assign the correct physical material. This may require a more careful naming strategy or manual adjustments.
+- **UE4 Only**: This script is currently supported for Unreal Engine 4 (UE4). An update for Unreal Engine 5 (UE5) is planned.
+- **Not Foolproof**: The tool works well for most cases but may not be perfect for all project setups. It's designed to save time and handle 80% of the assignment process.
 
-Notice how one rock material was set a metal physical material:
-![image](https://github.com/user-attachments/assets/e91d53e4-76f3-4572-9748-7bfa0223cd52)
+---
 
-That's the main flaw in this tool- the word Iron exists in the material name and so the script couldn't determine which physical material to assign.
-In this case, either a more careful naming convention is required, or manual tweak.
-The tool isn't 100% foolproof and it is designed to take you 80% of the way.
+## Important Notes
 
-To easily remove physical materials (for whatever reason)- select the materials *in the content browser* and click the remove button:
+- **Physical Materials Directory**: Ensure the physical materials are placed in the correct directory (`/content/PhysicalMaterials` by default).
+- **Editing Dictionary**: You can easily edit the `.json` dictionary at any time to add new mappings or adjust existing ones.
+- **Customizing Paths**: The paths to the physical materials directory and dictionary file are customizable within the script. Make sure to adjust them based on your project structure.
 
-![image](https://github.com/user-attachments/assets/0873cef4-533e-40eb-87ad-7f277d47afb6)
+---
 
+## Requirements
 
+- Unreal Engine 4
+- Python (for running the `AssignPhysMats.py` script)
+- PyQt (for the **DictEditor.exe** tool)
 
+---
 
+## License
 
-##Important Notes:
+This tool is open source and free to use for both personal and commercial projects. If you find it useful, feel free to contribute or modify it for your own needs.
 
-This script is currently only supported for UE4. 
-I plan to update for UE5 soon.
-
-As mentioned, the script isn't foolproof and uses a simple algorithm that heavily relies on your file naming conventions. Use with caution.
-
-
-
-
+---
