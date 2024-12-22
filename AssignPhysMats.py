@@ -67,9 +67,10 @@ def set_phys_mats(physicalMaterial, material):
 def remove_phys_mats():
     selected = unreal.EditorUtilityLibrary.get_selected_assets()  
     for asset in selected:
-        if asset.get_class().get_name() == 'Material':
-            print(f'Removed physical material from: {asset.get_name()}' )
-            asset.set_editor_property('phys_material', None)
+        if asset.get_class().get_name() == 'Material' or asset.get_class().get_name() == 'MaterialInstanceConstant':
+            if asset.get_editor_property('phys_material') is not None:
+                print(f'Removed physical material from: {asset.get_name()}')
+                asset.set_editor_property('phys_material', None)
 
 
 def map_material(word, mapping_dict):
