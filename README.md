@@ -1,7 +1,7 @@
 
 # Auto Physical Materials Assigner for Unreal Engine
 
-This tool automates the process of assigning physical materials to your Unreal Engine materials based on a dictionary of physical materials and their synonyms. It saves time and reduces the repetitive task of manually assigning physical materials to meshes in your level.
+This tool automates the process of assigning physical materials to your Unreal Engine materials based on a dictionary of physical materials and their synonyms. It saves time and reduces the repetitive task of manually assigning physical materials to objects in your level.
 
 ### What Are Physical Materials?
 
@@ -34,14 +34,24 @@ To learn more about physical materials in Unreal Engine, visit the official [Unr
    - **Key**: Physical material name (e.g., `Metal`, `Wood`, `Concrete`).
    - **Value**: Material names that correspond to the physical material.
 ![image](https://github.com/user-attachments/assets/2f70fee5-eb86-45cb-a1a2-08d2b5245780)
-   Once you're done, save the `.json` file.
+
+   Once you're done, save the `.json` file as "material_mapping.json"
+
+3. **Run the Editor Utility Widget**
+   
+   ![image](https://github.com/user-attachments/assets/25c96dcb-e4c1-441b-8e51-77944ee12f8f)
+
    
 
-4. **Assigning Physical Materials**:  
-   After setting up the dictionary, open your level in Unreal Engine, select the materials in the content browser, and click on the "Auto Physical Materials" button in the EUB. The script will automatically assign the appropriate physical material to each selected material based on the dictionary.
+5. **Assigning Physical Materials**:  
+   Open your level in Unreal Engine, click on the "Auto Physical Materials" button in the EUW. The script will automatically assign the appropriate physical material to each material in the level based on the dictionary.
+   
+   ![image](https://github.com/user-attachments/assets/eb80ffb9-2b5f-4e1f-a7fe-f5a83cf7fbf2)
 
-5. **Removing Physical Materials**:  
+6. **Removing Physical Materials**:  
    To remove the assigned physical materials, select the materials in the content browser and click on the "Remove Physical Materials" button.
+
+   ![image](https://github.com/user-attachments/assets/0873cef4-533e-40eb-87ad-7f277d47afb6)
 
 ---
 
