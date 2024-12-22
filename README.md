@@ -98,8 +98,9 @@ Here’s an example of the tool in action:
 ## Requirements
 
 - Unreal Engine 4
-- Python (for running the `AssignPhysMats.py` script)
-- PyQt (for the **DictEditor.exe** tool)
+- Enable Editor Scripting Utilities in Plugins.
+- Enable Python in Unreal (for running the `AssignPhysMats.py` script)
+- Optional: PyQt (for running **DictEditor.py**. Not needed for DictEditor.exe)
 
 ---
 
